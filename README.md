@@ -7,8 +7,8 @@ by tony baldwin
 ![SpecTcl](http://tonybaldwin.info/images/nuspec0.1-201402031235.png)
 
 =======
-create nuspec files for your apps and programs
-easily with graphical nuspec creator
+create .nuspec files for your apps and programs easily with graphical nuspec creator
+
 =======
 repo contains exe file 
 (no need to install tclto run it), 
