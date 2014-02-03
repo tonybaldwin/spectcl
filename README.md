@@ -10,9 +10,9 @@ by tony baldwin
 create .nuspec files for your apps and programs easily with graphical nuspec creator
 
 =======
-repo contains exe file 
-(no need to install tclto run it), 
-or, if you prefer, the .tcl source script
-(install ActiveTcl to run that).
+repo contains exe file (no need to install tclto run it), 
+or, if you prefer, the .tcl source script (install ActiveTcl to run that).
+
+Also, get it with Chocolatey: http://chocolatey.org/packages/spectcl
 
 released according to GPL v.3
