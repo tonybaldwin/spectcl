@@ -1,5 +1,8 @@
 spectcl
 =======
+
+![SpecTcl](http://tonybaldwin.info/images/spectcl.png)
+
 nuspec creator
 in tcl/tk
 by tony baldwin
