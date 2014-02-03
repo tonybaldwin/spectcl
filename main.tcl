@@ -25,8 +25,15 @@ global tags
 global filename
 global file_types
 global lica
+global file
+global target
+global depends
+global depversion
 
-set file_types {"nuspec files" {.nuspec}}
+set file_types {
+{"nuspec files" {.nuspec}}
+{"all files" *}
+}
 set filename ""
 set tags ""
 set name ""
@@ -42,8 +49,12 @@ set licacc ""
 set summary ""
 set description ""
 set releasenotes ""
+set file ""
+set target ""
+set depends ""
+set depversion ""
 
-wm title . "Nuspec.Tcl"
+wm title . "SpecTcl"
 
 bind . <Escape> {exit}
 
@@ -71,6 +82,18 @@ grid [ttk::label .a.tg -text "Tags: "]\
 
 grid [ttk::label .a.icolbl -text "Icon URL: "]\
 [ttk::entry .a.icurl -textvar iconurl]
+
+grid [ttk::label .a.deps -text "Dependencies: "]\
+[ttk::entry .a.depent -textvar depends]
+
+grid [ttk::label .a.depv -text "Depends Version: "]\
+[ttk::entry .a.depvent -textvar depversion]
+
+grid [ttk::label .a.file -text "File: "]\
+[ttk::entry .a.enfil -textvar file]
+
+grid [ttk::label .a.targ -text "Target: "]\
+[ttk::entry .a.targent -textvar target]
 
 grid [ttk::label .a.licweb -text "License URL: "]\
 [ttk::entry .a.licurl -textvar licurl]
@@ -127,17 +150,20 @@ set nuspec "<?xml version=\"1.0\" encoding=\"utf-8\"?>
     <authors>$::author</authors>
     <owners>$::owner</owners>
     <summary>$::summary</summary>
-    <description>4::description</description>
+    <description>$::description</description>
     <projectUrl>$::purl</projectUrl>
     <tags>$::name $::tags admin</tags>
     <copyright>$::copyright</copyright>
     <licenseUrl>$::licurl</licenseUrl>
     <requireLicenseAcceptance>$lica</requireLicenseAcceptance>
     <iconUrl>$::iconurl</iconUrl>
+    <dependencies>
+      <dependency id=\"$::depends\" version=\"$::depversion\" />
+    </dependencies>
     <releaseNotes>$::releasenotes</releaseNotes>
   </metadata>
   <files>
-    <file src=\"tools\**\" target=\"tools\" />
+    <file src=\"$::file\" target=\"$::target\" />
   </files>
 </package>"
 
@@ -147,7 +173,7 @@ frame .spectacle.a
 text .spectacle.a.txt -width 50 -height 20 -yscrollcommand ".spectacle.a.ys set" -maxundo 0 -undo true
 .spectacle.a.txt insert end $nuspec 
 
-scrollbar .spectacle.a.ys -command ".spectacle.txt yview"
+scrollbar .spectacle.a.ys -command ".spectacle.a.txt yview"
 
 frame .spectacle.b
 ttk::button .spectacle.b.btn -text "Save" -command {save}
@@ -162,6 +188,7 @@ pack .spectacle.b -in .spectacle -side right
 
 proc save {} {
    set filename $::name.nuspec
+   set filename [tk_getSaveFile -filetypes $::file_types]
    set data [.spectacle.a.txt get 1.0 {end -1c}]
    set fileid [open $filename w]
    puts -nonewline $fileid $data
