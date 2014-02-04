@@ -5,9 +5,11 @@
 # by tony baldwin | http://wiki.tonybaldwin.info
 # released according to GPL v.3 or later.
 
+# require stuff
 package require Tk
 package require Ttk
 
+# declare some variables
 global name
 global version
 global author
@@ -54,6 +56,7 @@ set target ""
 set depends ""
 set depversion ""
 
+# gui starts here
 wm title . "SpecTcl"
 
 bind . <Escape> {exit}
@@ -133,6 +136,7 @@ frame .c
 grid [ttk::button .c.b -text "Create nuspec file" -command {mkspec}]
 pack .c -in . -side bottom
 
+# write the nuspec file
 proc mkspec {} {
 	if { $::licacc == "1" } {
 		set lica true } else {
@@ -186,6 +190,7 @@ pack .spectacle.b -in .spectacle -side right
 
 }
 
+# save the nuspec file
 proc save {} {
    set filename $::name.nuspec
    set filename [tk_getSaveFile -filetypes $::file_types]
@@ -195,13 +200,6 @@ proc save {} {
    close $fileid
  } 
 
-
-###############################################################
-# TODO
-# add dependencies & dep versions!!
-# Then wrap it up in a tclkit/starkit, and upload to chocolatey!
-# :D
-#
 ###############################################################
 # This program was written by tony baldwin | http://wiki.tonybaldwin.info
 # This program is free software; you can redistribute it and/or modify
