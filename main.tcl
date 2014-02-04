@@ -1,7 +1,7 @@
 #!/usr/bin/wish
 
 #################################################
-# MkNuspec.tcl - tool for writing a nuspec file
+# Spec.tcl - tool for writing a nuspec file
 # by tony baldwin | http://wiki.tonybaldwin.info
 # released according to GPL v.3 or later.
 
